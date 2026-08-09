@@ -510,28 +510,30 @@ function ChatBox({ documentText }) {
 
 
 
-       
+ 
 <div className="input-area">
   <label htmlFor="question-input">
-    Ask a question about your documents
+    Ask Your Knowledge
   </label>
 
-  <input
-    id="question-input"
-    type="text"
-    placeholder="Type your question here..."
-    value={question}
-    onChange={(e) => setQuestion(e.target.value)}
-    onKeyDown={(e) => {
-      if (e.key === "Enter") {
-        handleAsk();
-      }
-    }}
-  />
+  <div className="question-row">
+    <input
+      id="question-input"
+      type="text"
+      placeholder="Ask a question about your documents..."
+      value={question}
+      onChange={(e) => setQuestion(e.target.value)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          handleAsk();
+        }
+      }}
+    />
 
-  <button onClick={handleAsk}>
-    Ask AI
-  </button>
+    <button onClick={handleAsk}>
+      Ask AI
+    </button>
+  </div>
 </div>
 
 
