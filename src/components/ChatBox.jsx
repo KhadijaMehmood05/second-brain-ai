@@ -512,8 +512,7 @@ function ChatBox({ documentText }) {
 
  
 <div className="input-area">
-  <label htmlFor="question-input">
-  </label>
+  
 
   <div className="question-row">
     <input
