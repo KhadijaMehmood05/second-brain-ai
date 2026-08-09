@@ -501,23 +501,11 @@ function ChatBox({ documentText }) {
 
 
         }
-        
+        <div className="input-area">
 
-  
-
-
-
-
-
-
-
-
- 
-<div className="input-area">
-
-  <label htmlFor="question-input" className="sr-only">
-    Ask your knowledge
-  </label>
+  <label htmlFor="question-input" className="visually-hidden">
+  Ask your knowledge
+</label>
 
   <input
     id="question-input"
@@ -537,6 +525,17 @@ function ChatBox({ documentText }) {
   </button>
 
 </div>
+
+
+
+
+
+
+
+
+
+ 
+
 
 
 
