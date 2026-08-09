@@ -1,8 +1,16 @@
 # Second Brain AI 🧠
 
-Second Brain AI is an AI-powered document assistant that helps users quickly find and understand information from their PDF documents. Users can upload one or multiple PDFs, and the application extracts their text and allows them to ask questions about the uploaded documents. The AI retrieves relevant information from the documents and generates an answer, helping users avoid manually searching through long files.
+Second Brain AI is an AI-powered document assistant that helps users quickly find and understand information from their PDF documents. Users can upload one or multiple PDFs, and the application extracts their text and allows them to ask questions about the uploaded documents. The AI analyzes the available document content and generates relevant answers, helping users avoid manually searching through long files.
 
-## Features
+## 🚀 Live Application
+
+**Live Demo:** https://second-brain-ai-bice.vercel.app/
+
+**GitHub Repository:** https://github.com/KhadijaMehmood05/second-brain-ai
+
+---
+
+## ✨ Features
 
 * 📄 Upload multiple PDF documents
 * 🔍 Extract text from uploaded PDFs
@@ -10,12 +18,14 @@ Second Brain AI is an AI-powered document assistant that helps users quickly fin
 * 📚 Search information across multiple PDFs
 * 💬 Display AI-generated answers using Markdown
 * 🕘 Save and view previous chat history
-* 💾 Store uploaded documents and chat history using browser local storage
+* 💾 Store uploaded documents and chat history using browser LocalStorage
 * 🗑️ Delete individual documents or clear all documents
-* ⚠️ Error handling for invalid or unreadable documents
+* ⚠️ Handle PDF extraction and AI request errors
 * 📱 Responsive and accessible interface
 
-## Tech Stack
+---
+
+## 🛠️ Tech Stack
 
 * React
 * Vite
@@ -23,16 +33,20 @@ Second Brain AI is an AI-powered document assistant that helps users quickly fin
 * React Markdown
 * PDF.js
 * Vitest
+* React Testing Library
 * V8 Coverage
 * AI/LLM API
 * LocalStorage
+* Vercel
 
-## How to Run Locally
+---
+
+## 💻 How to Run Locally
 
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/KhadijaMehmood05/second-brain-ai.git
 ```
 
 ### 2. Open the project
@@ -47,15 +61,23 @@ cd second-brain-ai
 npm install
 ```
 
-### 4. Start the development server
+### 4. Configure environment variables
+
+Create a `.env` file in the project root and add the required AI API key using the environment-variable name expected by the application.
+
+Do not commit the `.env` file or expose API keys in the repository.
+
+### 5. Start the development server
 
 ```bash
 npm run dev
 ```
 
-Then open the local URL shown in the terminal.
+Then open the local URL displayed in the terminal.
 
-## Production Build
+---
+
+## 📦 Production Build
 
 To create a production build:
 
@@ -69,31 +91,69 @@ To preview the production build locally:
 npm run preview
 ```
 
-## Architecture
+The production build was successfully tested before deployment.
 
-The application is organized into several main parts:
+---
 
-### `src/components`
+# 🏗️ Architecture
 
-Contains the main UI components.
+The application is organized into several main parts.
 
-* `Header.jsx` — Application header
-* `UploadBox.jsx` — Handles PDF uploading, extraction and document management
-* `ChatBox.jsx` — Handles user questions, AI responses and chat history
+## `src/components`
 
-### `src/services`
+Contains the main user-interface components.
 
-Contains services used by the application.
+### `Header.jsx`
 
-* `aiService.js` — Handles communication with the AI service and generates answers from document information
+Displays the application header and branding.
 
-### `src/utils`
+### `UploadBox.jsx`
 
-Contains utility functions.
+Handles:
 
-* `pdfReader.js` — Extracts text and page information from PDF documents
+* PDF file selection
+* PDF text extraction
+* Document display
+* Individual document deletion
+* Clearing uploaded documents
 
-### `src/tests`
+### `ChatBox.jsx`
+
+Handles:
+
+* User questions
+* AI requests
+* AI responses
+* Loading state
+* Error messages
+* Chat history
+* Saving chat history to LocalStorage
+
+---
+
+## `src/services`
+
+Contains services responsible for external functionality.
+
+### `aiService.js`
+
+Handles communication with the AI/LLM service.
+
+It receives the extracted document content and the user's question, sends the information to the AI model, and returns the generated answer.
+
+---
+
+## `src/utils`
+
+Contains reusable utility functions.
+
+### `pdfReader.js`
+
+Uses PDF.js to extract text and page information from uploaded PDF documents.
+
+---
+
+## `src/tests`
 
 Contains automated tests for important application functionality.
 
@@ -101,51 +161,76 @@ Contains automated tests for important application functionality.
 * `UploadBox.test.jsx`
 * `ChatBox.test.jsx`
 
-### `App.jsx`
+---
 
-Manages uploaded documents and combines their extracted text before passing it to the AI chat component.
+## `App.jsx`
 
-## How the AI Works
+Acts as the main application controller.
 
-The AI is used to solve a real document-search problem rather than acting as a general chatbot.
+It:
 
-The workflow is:
+1. Maintains uploaded document state.
+2. Saves documents to LocalStorage.
+3. Removes individual documents.
+4. Clears all documents.
+5. Combines extracted PDF content.
+6. Passes the combined document content to `ChatBox`.
+
+---
+
+# 🤖 AI Integration
+
+The AI functionality is the core feature of Second Brain AI.
+
+Instead of being a general-purpose chatbot, the AI is used specifically to help users understand and retrieve information from their own uploaded documents.
+
+### AI Workflow
 
 1. The user uploads one or more PDF documents.
-2. The application extracts text from each PDF.
-3. The extracted document information is stored in the application.
-4. The document text is provided to the AI service together with the user's question.
-5. The AI identifies relevant information from the uploaded documents.
-6. The AI generates an answer based on the available document content.
-7. The answer is displayed to the user using Markdown formatting.
+2. PDF.js extracts the text from each document.
+3. The application stores the extracted document information.
+4. The extracted content is combined and provided to the AI service.
+5. The user enters a question about the documents.
+6. The AI receives the document content together with the user's question.
+7. The AI generates an answer based on the available document information.
+8. The answer is displayed using Markdown formatting.
+9. The question and answer can be saved in chat history.
 
-This allows users to ask questions about their own documents instead of manually searching through potentially large PDF files.
+This makes the AI capability meaningful because it directly solves the problem of finding information inside lengthy documents.
 
-## Error Handling
+---
+
+# 🛡️ Error Handling & Resilience
 
 The application handles several common failure cases.
 
-### No question
+### Empty Question
 
 If the user submits an empty question, the request is ignored.
 
-### No documents
+### No Uploaded Documents
 
-If the user tries to ask a question before uploading documents, the application displays:
+If the user asks a question before uploading documents, the application displays an appropriate message:
 
-> Please upload documents first.
+> ⚠️ Please upload documents first.
 
-### PDF extraction failure
+### PDF Processing Failure
 
-If a PDF cannot be processed, the application catches the error and displays an error message instead of crashing.
+If a PDF cannot be processed or its text cannot be extracted, the application handles the error instead of allowing the application to crash.
 
-### AI request failure
+### AI Request Failure
 
-If the AI service fails to generate a response, the application displays an error message instead of leaving the user with a broken interface.
+If the AI service fails, the application catches the error and displays an error message instead of leaving the interface in a broken state.
 
-## Testing
+### Loading State
 
-The project uses Vitest for automated testing.
+While the AI is generating a response, the application displays a loading state so the user knows that the request is being processed.
+
+---
+
+# 🧪 Testing
+
+The project uses **Vitest** and **React Testing Library** for automated testing.
 
 Run the tests with:
 
@@ -159,9 +244,9 @@ Current test results:
 * **15 tests passed**
 * **0 tests failed**
 
-### Test Coverage
+## Test Coverage
 
-Coverage is generated using Vitest's V8 coverage provider.
+Coverage can be generated using:
 
 ```bash
 npm test -- --coverage
@@ -176,83 +261,151 @@ Current coverage:
 | Functions  |      80% |
 | Lines      |   75.53% |
 
-The project exceeds the capstone requirement of at least 50% component coverage.
+The project exceeds the capstone requirement of at least **50% component coverage**.
 
-## Performance & Accessibility
+---
 
-The application was tested using Lighthouse.
+# ⚡ Performance & Accessibility
 
-Current audit results:
+A mobile Lighthouse audit was performed on the production application.
+
+### Lighthouse Results
 
 | Category       |   Score |
 | -------------- | ------: |
-| Performance    |  **92** |
+| Performance    |  **91** |
 | Accessibility  | **100** |
 | Best Practices | **100** |
-| SEO            |  **82** |
+| SEO            |  **50** |
 
-The capstone requires a Lighthouse score of at least 85 and no WCAG AA accessibility violations.
+### Results
 
-The application achieved:
+* ✅ Performance score is above the capstone target of 85
+* ✅ Accessibility score is 100
+* ✅ Best Practices score is 100
+* ✅ No automated WCAG AA accessibility violations were reported by Lighthouse
+* ⚠️ SEO score is 50 and can be improved in a future version
 
-* ✅ Performance above 85
-* ✅ Accessibility 100
-* ✅ No reported WCAG AA violations in the audit
-* ✅ Best Practices 100
+The Lighthouse audit was performed using a mobile device simulation and slow 4G network conditions.
 
 ### Accessibility Improvement
 
-During the accessibility audit, form controls were identified as needing associated labels. Accessible labels were added to improve the experience for users who rely on assistive technologies such as screen readers.
+The question input was reviewed to ensure it has an associated accessible label. Duplicate labels were removed so the input has a clear and meaningful accessible name.
 
-## Deployment
+This improves usability for people using screen readers and other assistive technologies.
 
-The application is deployed as a production web application.
+---
+
+# 🚀 Deployment
+
+The application is deployed as a production web application using Vercel and is connected to the GitHub repository.
 
 **Live Application:**
-YOUR_DEPLOYED_URL
+https://second-brain-ai-bice.vercel.app/
 
 **Repository:**
-YOUR_GITHUB_REPOSITORY_URL
+https://github.com/KhadijaMehmood05/second-brain-ai
 
-## Deployment Checklist
+Production builds were successfully tested locally before deployment.
 
-Before deployment, the following areas were checked:
+Environment variables are configured through the deployment environment rather than being committed to the repository.
+
+---
+
+# ✅ Deployment Checklist
 
 * [x] Application builds successfully
-* [x] Application works in production preview
+* [x] Production build tested locally
+* [x] Application deployed successfully
+* [x] Live production URL verified
+* [x] GitHub repository connected
+* [x] Environment variables configured through deployment settings
+* [x] AI functionality tested
+* [x] PDF upload functionality tested
+* [x] Error states implemented
 * [x] Automated tests pass
 * [x] Test coverage exceeds 50%
-* [x] Accessibility audit completed
-* [x] Performance audit completed
-* [x] Error states handled
-* [x] Production environment configured
+* [x] Lighthouse performance audit completed
+* [x] Lighthouse accessibility audit completed
 * [x] README documentation completed
+* [x] Rollback procedure documented
 
-## Rollback Plan
+**Deployment status:** Production deployment completed successfully.
 
-If a production deployment introduces a problem, the previous working deployment can be restored through the deployment platform. The repository also provides the source code required to rebuild and redeploy a known working version.
+---
 
-## Known Limitations
+# 🔄 Rollback Plan
 
-* PDF processing is performed in the browser and very large PDFs may take longer to process.
+If a production deployment introduces a critical problem, the application can be rolled back by reverting the problematic Git commit and pushing the corrected version to the `main` branch.
+
+Because the Vercel project is connected to GitHub, a new deployment will be triggered automatically.
+
+Vercel deployment and runtime logs can also be used to identify production problems.
+
+---
+
+# ⚠️ Known Limitations
+
+* PDF processing is performed in the browser, so very large PDFs may take longer to process.
 * AI responses depend on the quality and completeness of the extracted document text.
 * The application currently focuses on PDF documents.
-* LocalStorage is browser-specific, so documents and chat history are not automatically synchronized across different devices.
+* LocalStorage is browser-specific, so documents and chat history are not synchronized between different devices.
 * AI service availability can affect response generation.
+* The current application sends the extracted document content to the AI service when answering questions, which may become less efficient for very large document collections.
 
-## Future Improvements
+---
+
+# 🔮 Future Improvements
 
 Possible future improvements include:
 
 * Support for additional document formats such as DOCX and TXT
 * Improved semantic document retrieval
-* User accounts and cloud synchronization
 * Vector database integration for large document collections
+* User accounts and cloud synchronization
 * Streaming AI responses
 * More advanced document summarization
 * Document citations showing exactly where an answer came from
 * Improved handling of very large documents
+* Better chunking and retrieval for large PDF collections
+* Improved SEO and metadata
 
-## Project Goal
+---
 
-Second Brain AI demonstrates how AI can be integrated into a practical frontend application to solve a real information-retrieval problem while considering accessibility, performance, testing, error handling and production readiness.
+# 📊 Production Audit Summary
+
+| Area                      | Result               |
+| ------------------------- | -------------------- |
+| Live Application          | ✅ Deployed           |
+| GitHub Repository         | ✅ Available          |
+| Production Build          | ✅ Successful         |
+| AI Integration            | ✅ Implemented        |
+| PDF Processing            | ✅ Implemented        |
+| Error Handling            | ✅ Implemented        |
+| Automated Tests           | ✅ 15 passing         |
+| Test Coverage             | ✅ ~75.53% statements |
+| Lighthouse Performance    | ✅ 91                 |
+| Lighthouse Accessibility  | ✅ 100                |
+| Lighthouse Best Practices | ✅ 100                |
+| SEO                       | ⚠️ 50                |
+| Deployment Checklist      | ✅ Completed          |
+| Rollback Plan             | ✅ Documented         |
+
+---
+
+# 🧠 Reflection
+
+The hardest part of this project was integrating the AI service with the frontend while making PDF text extraction, API authentication, error handling, testing, and deployment work together. I also faced production deployment issues involving environment variables and configuration. These problems taught me that an application working correctly on a local machine does not automatically mean it is production-ready.
+
+If I built the project again, I would plan the production architecture and environment-variable setup earlier instead of leaving deployment configuration until the end. I would also design the document-retrieval system with large documents in mind from the beginning.
+
+One thing that surprised me was how many details are involved in shipping a real application beyond implementing the main feature. Testing, accessibility, performance, environment configuration, deployment, error handling, documentation, and rollback planning are all important parts of building a production-ready product.
+
+---
+
+# 🎯 Project Goal
+
+Second Brain AI demonstrates how an AI/LLM can be integrated into a practical frontend application to solve a real information-retrieval problem.
+
+The project combines PDF processing, AI-powered document understanding, persistent browser storage, automated testing, accessibility considerations, error handling, and production deployment into a complete working application.
+
