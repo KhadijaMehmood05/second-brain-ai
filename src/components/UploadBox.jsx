@@ -149,9 +149,7 @@ return (
 
 
 
-<label htmlFor="pdf-upload">
-  Upload PDF documents
-</label>
+
 
 <label htmlFor="pdf-upload">
   Upload PDF documents
