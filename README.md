@@ -238,11 +238,23 @@ Run the tests with:
 npm test
 ```
 
-Current test results:
+### Current Test Results
 
 * **3 test files passed**
 * **15 tests passed**
 * **0 tests failed**
+
+The tested functionality includes:
+
+* AI service behavior
+* Document retrieval
+* Multiple-PDF information retrieval
+* AI response handling
+* PDF upload functionality
+* ChatBox rendering and interaction
+* Empty-question handling
+* Missing-document handling
+* Chat history persistence
 
 ## Test Coverage
 
@@ -267,26 +279,26 @@ The project exceeds the capstone requirement of at least **50% component coverag
 
 # ⚡ Performance & Accessibility
 
-A mobile Lighthouse audit was performed on the production application.
+A mobile Lighthouse audit was performed on the production application using mobile device simulation and slow 4G network conditions.
 
 ### Lighthouse Results
 
 | Category       |   Score |
 | -------------- | ------: |
-| Performance    |  **91** |
+| Performance    |  **96** |
 | Accessibility  | **100** |
 | Best Practices | **100** |
-| SEO            |  **50** |
+| SEO            |  **90** |
 
 ### Results
 
 * ✅ Performance score is above the capstone target of 85
 * ✅ Accessibility score is 100
 * ✅ Best Practices score is 100
+* ✅ SEO score is 90
 * ✅ No automated WCAG AA accessibility violations were reported by Lighthouse
-* ⚠️ SEO score is 50 and can be improved in a future version
 
-The Lighthouse audit was performed using a mobile device simulation and slow 4G network conditions.
+The latest Lighthouse audit was performed on the production application.
 
 ### Accessibility Improvement
 
@@ -300,11 +312,9 @@ This improves usability for people using screen readers and other assistive tech
 
 The application is deployed as a production web application using Vercel and is connected to the GitHub repository.
 
-**Live Application:**
-https://second-brain-ai-bice.vercel.app/
+**Live Application:** https://second-brain-ai-bice.vercel.app/
 
-**Repository:**
-https://github.com/KhadijaMehmood05/second-brain-ai
+**Repository:** https://github.com/KhadijaMehmood05/second-brain-ai
 
 Production builds were successfully tested locally before deployment.
 
@@ -314,21 +324,21 @@ Environment variables are configured through the deployment environment rather t
 
 # ✅ Deployment Checklist
 
-* [x] Application builds successfully
-* [x] Production build tested locally
-* [x] Application deployed successfully
-* [x] Live production URL verified
-* [x] GitHub repository connected
-* [x] Environment variables configured through deployment settings
-* [x] AI functionality tested
-* [x] PDF upload functionality tested
-* [x] Error states implemented
-* [x] Automated tests pass
-* [x] Test coverage exceeds 50%
-* [x] Lighthouse performance audit completed
-* [x] Lighthouse accessibility audit completed
-* [x] README documentation completed
-* [x] Rollback procedure documented
+* ✅ Application builds successfully
+* ✅ Production build tested locally
+* ✅ Application deployed successfully
+* ✅ Live production URL verified
+* ✅ GitHub repository connected
+* ✅ Environment variables configured through deployment settings
+* ✅ AI functionality tested
+* ✅ PDF upload functionality tested
+* ✅ Error states implemented
+* ✅ Automated tests pass
+* ✅ Test coverage exceeds 50%
+* ✅ Lighthouse performance audit completed
+* ✅ Lighthouse accessibility audit completed
+* ✅ README documentation completed
+* ✅ Rollback procedure documented
 
 **Deployment status:** Production deployment completed successfully.
 
@@ -368,7 +378,7 @@ Possible future improvements include:
 * Document citations showing exactly where an answer came from
 * Improved handling of very large documents
 * Better chunking and retrieval for large PDF collections
-* Improved SEO and metadata
+* Further SEO and metadata improvements
 
 ---
 
@@ -384,10 +394,10 @@ Possible future improvements include:
 | Error Handling            | ✅ Implemented        |
 | Automated Tests           | ✅ 15 passing         |
 | Test Coverage             | ✅ ~75.53% statements |
-| Lighthouse Performance    | ✅ 91                 |
-| Lighthouse Accessibility  | ✅ 100                |
-| Lighthouse Best Practices | ✅ 100                |
-| SEO                       | ⚠️ 50                |
+| Lighthouse Performance    | ✅ **96**             |
+| Lighthouse Accessibility  | ✅ **100**            |
+| Lighthouse Best Practices | ✅ **100**            |
+| Lighthouse SEO            | ✅ **90**             |
 | Deployment Checklist      | ✅ Completed          |
 | Rollback Plan             | ✅ Documented         |
 
